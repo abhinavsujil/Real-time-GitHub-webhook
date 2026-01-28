@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Local env
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test/Debug files
+setup.log
+env.log
+install.log
+verify_env.py
+setup_and_verify.py
+simulate_webhook.py
+data/

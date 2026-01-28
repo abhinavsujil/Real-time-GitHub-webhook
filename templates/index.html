@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevStream | GitHub Activity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="icon">⚡</span>
+                <h1>DevStream</h1>
+            </div>
+            <div class="header-actions">
+                <a href="/setup" class="setup-btn">+ Connect Repo</a>
+                <div class="status-indicator">
+                    <span class="dot"></span>
+                    <span class="text">Live Sync</span>
+                </div>
+            </div>
+        </header>
+
+        <div id="empty-state" class="empty-state" style="display: none;">
+            <div class="empty-icon">📡</div>
+            <h2>No events yet</h2>
+            <p>Connect a GitHub repository to start receiving events</p>
+            <a href="/setup" class="setup-link">Setup Instructions →</a>
+        </div>
+
+        <main id="events-container">
+            <!-- Events will be injected here -->
+        </main>
+    </div>
+
+    <!-- Template for an event card -->
+    <template id="event-template">
+        <div class="event-card">
+            <div class="event-icon"></div>
+            <div class="event-content">
+                <div class="event-header">
+                    <span class="event-author"></span>
+                    <span class="event-action"></span>
+                    <span class="event-repo"></span>
+                </div>
+                <div class="event-details">
+                    <span class="event-message"></span>
+                </div>
+                <div class="event-meta">
+                    <span class="event-branches"></span>
+                    <span class="event-time"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
