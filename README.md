@@ -4,7 +4,7 @@ A real-time dashboard that displays GitHub repository activity (pushes, pull req
 
 ## 🚀 Live Demo
 
-**Dashboard:** [Your deployed URL here]
+**Dashboard:** https://githubwebhook.up.railway.app/
 
 ## Features
 
