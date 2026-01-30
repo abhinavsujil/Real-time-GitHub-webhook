@@ -26,9 +26,16 @@ def index():
     return render_template('index.html')
 
 @app.route('/setup')
+@app.route('/setup')
 def setup():
-    # Get the webhook URL dynamically
-    webhook_url = request.host_url.rstrip('/') + '/webhook'
+    # Get the webhook URL dynamically, forcing HTTPS if in production
+    scheme = request.headers.get('X-Forwarded-Proto', request.scheme)
+    host = request.headers.get('X-Forwarded-Host', request.host)
+    # Railway/Render usually send 'http' but handle SSL, so we prefer https if forwarded
+    if 'railway' in host or 'render' in host: 
+        scheme = 'https'
+        
+    webhook_url = f"{scheme}://{host}/webhook"
     return render_template('setup.html', webhook_url=webhook_url)
 
 @app.route('/webhook', methods=['POST'])
