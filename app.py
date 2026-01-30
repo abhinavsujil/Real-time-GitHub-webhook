@@ -97,8 +97,8 @@ def webhook_receiver():
                     "timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%d %B %Y - %I:%M %p IST")
                 }
         
-        # Fallback for simulation
-        if not parsed_event and 'action' in data:
+        # Fallback for simulation script only (has 'action' in UPPERCASE)
+        if not parsed_event and data.get('action') in ['PUSH', 'PULL_REQUEST', 'MERGE']:
             parsed_event = {
                 "request_id": data.get('request_id'),
                 "author": data.get('author'),
