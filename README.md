@@ -50,7 +50,7 @@ python app.py
 - **Backend:** Python Flask
 - **Database:** MongoDB Atlas
 - **Frontend:** Vanilla JS with CSS animations
-- **Deployment:** Render.com
+- **Deployment:** railway.app
 
 ## API Endpoints
 
