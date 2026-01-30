@@ -77,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function formatEventMessage(event) {
         if (event.action === 'PUSH') {
+            // Show commit message if available, otherwise fallback
+            if (event.message) {
+                return event.message.split('\n')[0]; // First line of commit message
+            }
             return `Pushed to ${event.to_branch}`;
         } else if (event.action === 'PULL_REQUEST') {
             return `Submitted a pull request from ${event.from_branch} to ${event.to_branch}`;

@@ -60,6 +60,11 @@ def webhook_receiver():
             commit_hash = data.get('after', 'unknown')
             repo_name = data.get('repository', {}).get('full_name', 'unknown')
             
+            # Get the commit message from the head commit
+            commits = data.get('commits', [])
+            head_commit = data.get('head_commit', {})
+            commit_message = head_commit.get('message', '') or (commits[0].get('message', '') if commits else '')
+            
             parsed_event = {
                 "request_id": commit_hash[:7] if commit_hash else 'unknown',
                 "author": author,
@@ -67,6 +72,7 @@ def webhook_receiver():
                 "from_branch": None,
                 "to_branch": to_branch,
                 "repo": repo_name,
+                "message": commit_message,
                 "timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%d %B %Y - %I:%M %p IST")
             }
 
