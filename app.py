@@ -67,7 +67,7 @@ def webhook_receiver():
                 "from_branch": None,
                 "to_branch": to_branch,
                 "repo": repo_name,
-                "timestamp": datetime.now(pytz.utc).strftime("%d %B %Y - %I:%M %p UTC")
+                "timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%d %B %Y - %I:%M %p IST")
             }
 
         elif event_type == 'pull_request':
@@ -84,7 +84,7 @@ def webhook_receiver():
                     "from_branch": pr.get('head', {}).get('ref'),
                     "to_branch": pr.get('base', {}).get('ref'),
                     "repo": repo_name,
-                    "timestamp": datetime.now(pytz.utc).strftime("%d %B %Y - %I:%M %p UTC")
+                    "timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%d %B %Y - %I:%M %p IST")
                 }
             elif action in ['opened', 'reopened']:
                 parsed_event = {
@@ -94,7 +94,7 @@ def webhook_receiver():
                     "from_branch": pr.get('head', {}).get('ref'),
                     "to_branch": pr.get('base', {}).get('ref'),
                     "repo": repo_name,
-                    "timestamp": datetime.now(pytz.utc).strftime("%d %B %Y - %I:%M %p UTC")
+                    "timestamp": datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%d %B %Y - %I:%M %p IST")
                 }
         
         # Fallback for simulation
@@ -106,7 +106,7 @@ def webhook_receiver():
                 "from_branch": data.get('from_branch'),
                 "to_branch": data.get('to_branch'),
                 "repo": data.get('repo', 'simulation'),
-                "timestamp": data.get('timestamp') or datetime.now(pytz.utc).strftime("%d %B %Y - %I:%M %p UTC")
+                "timestamp": data.get('timestamp') or datetime.now(pytz.timezone('Asia/Kolkata')).strftime("%d %B %Y - %I:%M %p IST")
             }
 
         if parsed_event:
