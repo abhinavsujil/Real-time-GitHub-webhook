@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import os
 from datetime import datetime
 import pytz
+import certifi
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ DB_NAME = "webhook_db"
 COLLECTION_NAME = "events"
 
 try:
-    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    # Use certifi for SSL certificates (fixes Railway/cloud deployment issues)
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000, tlsCAFile=certifi.where())
     db = client[DB_NAME]
     events_collection = db[COLLECTION_NAME]
     client.server_info()
